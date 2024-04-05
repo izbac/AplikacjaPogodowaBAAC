@@ -1,10 +1,8 @@
 package com.example.aplikacjapogodowa
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import org.w3c.dom.Text
 
 class Pogoda : AppCompatActivity()
 {
@@ -19,5 +17,7 @@ class Pogoda : AppCompatActivity()
 
         val textViewMiasto = findViewById<TextView>(R.id.textViewMiasto)
         textViewMiasto.text = miasto
+
+        val textViewLokalizacja = findViewById<TextView>(R.id.textViewLokalizacja)
     }
 }
