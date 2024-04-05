@@ -8,6 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import org.w3c.dom.Text
 import java.lang.Exception
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -28,11 +29,19 @@ class Pogoda : AppCompatActivity()
         val textViewMiasto = findViewById<TextView>(R.id.textViewMiasto)
         textViewMiasto.text = miasto
 
-        val textViewLokalizacja = findViewById<TextView>(R.id.textViewLokalizacja)
         val textViewCzas = findViewById<TextView>(R.id.textViewCzas)
+        val textViewLokalizacja = findViewById<TextView>(R.id.textViewLokalizacja)
+        val textViewPogoda = findViewById<TextView>(R.id.textViewPogoda)
         val textViewTemp = findViewById<TextView>(R.id.textViewTemp)
+        val textViewOdczuwalna = findViewById<TextView>(R.id.textViewOdczuwalna)
+        val textViewTempMin = findViewById<TextView>(R.id.textViewTempMin)
+        val textViewTempMax = findViewById<TextView>(R.id.textViewTempMax)
         val textViewWschod  = findViewById<TextView>(R.id.textViewWschod)
         val textViewZachod = findViewById<TextView>(R.id.textViewZachod)
+        val textViewWiatr = findViewById<TextView>(R.id.textViewWiatr)
+        val textViewWilgotnosc = findViewById<TextView>(R.id.textViewWilgotnosc)
+        val textViewZachmurzenie = findViewById<TextView>(R.id.textViewZachmurzenie)
+
 
         GlobalScope.launch(Dispatchers.Main)
         {
@@ -53,8 +62,21 @@ class Pogoda : AppCompatActivity()
                 val lokalizacja = json.getString("name") + ", " + sys.getString("country")
                 textViewLokalizacja.text = lokalizacja
 
+                val pogodaArr = json.getJSONArray("weather")
+                val pogoda = pogodaArr.getJSONObject(0)
+                textViewPogoda.text = pogoda.getString("main")
+
                 val temp = main.getString("temp") + "°C"
                 textViewTemp.text = temp
+
+                val odczuwalna = main.getString("feels_like") + "°C"
+                textViewOdczuwalna.text = odczuwalna
+
+                val tempMin = main.getString("temp_min") + "°C"
+                textViewTempMin.text = tempMin
+
+                val tempMax = main.getString("temp_max") + "°C"
+                textViewTempMax.text = tempMax
 
                 val wschod: Long = sys.getLong("sunrise")
                 textViewWschod.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(wschod * 1000))
@@ -62,7 +84,14 @@ class Pogoda : AppCompatActivity()
                 val zachod: Long = sys.getLong("sunset")
                 textViewZachod.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(zachod * 1000))
 
-                //dodac dodatkowe informacje - temp min/max, odczuwalna, wiatr itd.
+                val wiatr = json.getJSONObject("wind")
+                textViewWiatr.text = wiatr.getString("speed") + " km/h"
+
+                val wilgotnosc = main.getString("humidity") + "%"
+                textViewWilgotnosc.text = wilgotnosc
+
+                val zachmurzenie = json.getJSONObject("clouds")
+                textViewZachmurzenie.text = zachmurzenie.getString("all") + "%"
             }
             catch (e: Exception)
             {
