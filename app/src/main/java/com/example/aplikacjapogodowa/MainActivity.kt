@@ -15,14 +15,22 @@ class MainActivity : AppCompatActivity()
         val editTextMiasto = findViewById<EditText>(R.id.editTextMiasto)
         val buttonSprawdz = findViewById<Button>(R.id.buttonSprawdz)
 
+        val buttonUlubione = findViewById<Button>(R.id.buttonUlubione)
+
         buttonSprawdz.setOnClickListener()
         {
-            val miasto = editTextMiasto.text.toString();
+            val miasto = editTextMiasto.text.toString()
 
             val intent = Intent(this, Pogoda::class.java)
 
             intent.putExtra("miasto", "$miasto")
 
+            startActivity(intent)
+        }
+
+        buttonUlubione.setOnClickListener()
+        {
+            val intent = Intent(this, UlubioneLista::class.java)
             startActivity(intent)
         }
     }
