@@ -72,10 +72,10 @@ class Pogoda : AppCompatActivity()
                 val odczuwalna = main.getString("feels_like") + "°C"
                 textViewOdczuwalna.text = odczuwalna
 
-                val tempMin = main.getString("temp_min") + "°C"
+                val tempMin = "Temp Min: " + main.getString ("temp_min") + "°C"
                 textViewTempMin.text = tempMin
 
-                val tempMax = main.getString("temp_max") + "°C"
+                val tempMax = "Temp Max: " + main.getString("temp_max") + "°C"
                 textViewTempMax.text = tempMax
 
                 val wschod: Long = sys.getLong("sunrise")

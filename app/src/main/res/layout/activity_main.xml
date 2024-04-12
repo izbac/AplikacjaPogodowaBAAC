@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
     <EditText
@@ -25,8 +26,10 @@
         android:id="@+id/textView"
         android:layout_width="272dp"
         android:layout_height="50dp"
+        android:fontFamily="sans-serif"
         android:text="Wprowadź nazwę miasta"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextMiasto"
@@ -39,6 +42,7 @@
         android:id="@+id/buttonSprawdz"
         android:layout_width="203dp"
         android:layout_height="59dp"
+        android:backgroundTint="#122259"
         android:text="Sprawdź pogodę"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,11 +55,13 @@
         android:id="@+id/buttonUlubione"
         android:layout_width="203dp"
         android:layout_height="59dp"
+        android:backgroundTint="#122259"
         android:text="Ulubione"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSprawdz"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.354" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
